@@ -8,7 +8,6 @@ const apiUrl = process.env.VITE_API_DOMAIN;
 
 export default defineConfig({
   plugins: [react()],
-  base: '/web_frontend_week03/',
   server: {
     proxy: {
       '/api': {
