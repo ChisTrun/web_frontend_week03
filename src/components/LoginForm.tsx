@@ -19,7 +19,7 @@ function LoginForm({ setAlert, setFetching }: { setAlert: Function, setFetching:
         if (result.error) {
             setAlert({
                 code: result.code,
-                mss: result.mss
+                mss: result.error
             })
         } else {
             Cookies.set('user', JSON.stringify(result), { expires: 1 / 48, path: '/' });

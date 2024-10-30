@@ -17,7 +17,7 @@ const Register = async (loginData: {
         const rsp = await response.json();
         return rsp
     } catch (error: any) {
-        return { error: error.message };
+        return { error: error.message, code: error.code || 500 };
     }
 }
 
