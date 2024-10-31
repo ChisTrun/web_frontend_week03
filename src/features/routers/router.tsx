@@ -7,7 +7,7 @@ import LoginPage from "../../pages/Login";
 
 const Router: React.FC = () => {
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="">
       <Routes>
         <Route path='' element={<LoginPage />} />
         <Route path={paths.HOME} element={<HomePage />} />
