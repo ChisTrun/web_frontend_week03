@@ -8,6 +8,10 @@ function LoginForm({ setAlert, setFetching }: { setAlert: Function, setFetching:
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const toRegister = () =>  {
+        navigate('/register')
+    }
+
     const login = async (event: React.FormEvent, email: string, password: string) => {
         event.preventDefault();
         setFetching(true)
@@ -44,7 +48,7 @@ function LoginForm({ setAlert, setFetching }: { setAlert: Function, setFetching:
                 }} type="password" id="password" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your password" required />
             </div>
             <div className="flex items-center justify-between mb-4">
-                <a href="/register"
+                <a onClick={ () =>{ toRegister()}}
                     className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create
                     Account</a>
             </div>
