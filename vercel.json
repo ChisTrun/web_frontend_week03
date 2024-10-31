@@ -1,6 +1,6 @@
 {
     "rewrites": [
-      { "source": "/api/(.*)", "destination": "https://web-backend-week03.vercel.app/$1" }
+      {"source": "/(.*)", "destination": "/"}
     ]
   }
   
