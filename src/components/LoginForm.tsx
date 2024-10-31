@@ -48,9 +48,9 @@ function LoginForm({ setAlert, setFetching }: { setAlert: Function, setFetching:
                 }} type="password" id="password" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your password" required />
             </div>
             <div className="flex items-center justify-between mb-4">
-                <a onClick={ () =>{ toRegister()}}
+                <button onClick={ () =>{ toRegister()}}
                     className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create
-                    Account</a>
+                    Account</button>
             </div>
             <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
         </form>
