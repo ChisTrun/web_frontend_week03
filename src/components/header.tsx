@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie'
+import Logout from "../features/users/apis/logout";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../features/redux/Store";
 
 function Header() {
+    const dispatch = useDispatch<AppDispatch>();
+    const accessToken = useSelector((state: RootState) => state.auth.accessToken);
+
     const navigate = useNavigate();
-    const loggout = () => {
-        Cookies.remove('user')
-        navigate('/login')
+    const loggout = async () => {
+        const result = await Logout(dispatch, { accessToken: accessToken })
+        console.log(result)
+        if (!result.error) {
+            navigate('/login')
+        }
     }
     return <header className='flex shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
         <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
-            <a href="#"><img src="https://www.svgrepo.com/show/358715/logo-visual-studio.svg" alt="logo" className='w-10' />
+            <a href="/home"><img src="https://www.svgrepo.com/show/358715/logo-visual-studio.svg" alt="logo" className='w-10' />
             </a>
 
             <div id="collapseMenu"
@@ -31,37 +39,19 @@ function Header() {
                         <a href="#"><img src="https://www.svgrepo.com/show/358715/logo-visual-studio.svg" alt="logo" className='w-10' />
                         </a>
                     </li>
-                    {/* <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                        <a href='javascript:void(0)'
-                            className='hover:text-[#007bff] text-[#007bff] block font-semibold text-[15px]'>Home</a>
-                    </li> */}
-                    {/* <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                        className='hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>Team</a>
-                    </li>
-                    <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                        className='hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>Feature</a>
-                    </li>
-                    <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                        className='hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>Blog</a>
-                    </li>
-                    <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                        className='hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>About</a>
-                    </li>
-                    <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                        className='hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>Contact</a>
-                    </li> */}
                 </ul>
             </div>
 
-            <div className='flex max-lg:ml-auto space-x-3'>
+            <div className='flex max-lg:ml-auto space-x-3 items-center'>
+                <div className="flex items-center p-5" onClick={() => {
+                    navigate('/profile')
+                }}>
+                    <span>Profile</span>
+                </div>
                 <button onClick={() => {
                     loggout()
                 }}
                     className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 bg-[#f76161] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#283f57]'>Logout</button>
-                {/* <button
-                    className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]'>Sign
-                    up</button> */}
-
                 <button id="toggleOpen" className='lg:hidden'>
                     <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path

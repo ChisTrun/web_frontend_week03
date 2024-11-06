@@ -1,10 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { loginStart, loginSuccess, loginFailure, logout, refreshTokenSuccess } from '../../redux/AuthSlice';
 import { AppDispatch } from '../../redux/Store';
 
 
-const Login = async (loginData: {email: string;password: string;}) => {
-    const dispatch = useDispatch<AppDispatch>();
+const Login = async (dispatch: AppDispatch, loginData: { email: string; password: string; }) => {
     try {
         dispatch(loginStart())
         const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/auth/login`, {
@@ -24,7 +22,7 @@ const Login = async (loginData: {email: string;password: string;}) => {
             user: rsp.user,
             accessToken: rsp.access_token,
             refreshToken: rsp.refresh_token
-        })) 
+        }))
         return rsp
     } catch (error: any) {
         return { error: error.message, code: error.code || 500 };
