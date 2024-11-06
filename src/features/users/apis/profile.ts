@@ -1,5 +1,3 @@
-import { loginStart, loginSuccess, loginFailure, logout } from '../../redux/AuthSlice';
-import { AppDispatch } from '../../redux/Store';
 
 
 const Profile = async (profileData: { accessToken: string }) => {
